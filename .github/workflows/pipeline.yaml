@@ -1,0 +1,45 @@
+name: "Estrutura de diretórios e arquivos" # Nome do workflow
+
+on: # Define os eventos que disparam o workflow
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: # Permite disparar o workflow manualmente
+
+env: # Define variáveis de ambiente para o workflow
+  NODE_VERSION: "18"
+
+jobs: # Define os jobs do workflow
+  demonstrnado_estrutura: # ID do job
+    name: "Demonstrando a estrutura de diretórios e arquivos" # Nome do job (mostrado na interface do GitHub)
+    runs-on: ubuntu-latest # Define o ambiente de execução do job (runner)
+
+    steps: # Define os passos do job
+      - name: "Checkout do código" # Nome do passo
+        uses: actions/checkout@v4 # Ação para fazer checkout do código
+
+      - name: "Mostrar a estrutura do .github/workflows"
+        run: | # Comando para mostrar a estrutura do diretório .github/workflows
+          echo " Estrutura de diretórios e arquivos .github/workflows "
+          ls -la .github/workflows
+          echo: ""
+          echo " Total de workflows: $(ls -1 .github/workflows | wc -l) "
+
+      - name: "Elementos obrigatórios do workflow"
+        run: |
+          echo " Elementos obrigatórios do workflow "
+          echo " name: Define o nome do workflow. "
+          echo " on: Especifica os eventos que disparam o workflow. "
+          echo " jobs: Define os jobs que compõem o workflow. "
+          echo " Cada job deve conter: "
+          echo: ""
+        
+      - name: "Variáveis e contexto"
+        run: |
+          echo " Variáveis e contexto "
+          echo " Variáveis de ambiente (env) podem ser definidas para todo o workflow ou para jobs específicos. "
+          echo " Variáveis env: { env.NODE_VERSION } "
+          echo " O contexto permite acessar informações sobre o ambiente de execução, como variáveis de ambiente, informações do repositório, etc. "
+          echo: ""
+          echo " Total de variáveis e contexto: 2 "
