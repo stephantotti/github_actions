@@ -33,7 +33,7 @@ jobs: # Define os jobs do workflow
           echo " on: Especifica os eventos que disparam o workflow. "
           echo " jobs: Define os jobs que compõem o workflow. "
           echo " Cada job deve conter: "
-          echo: ""
+          echo ""
         
       - name: "Variáveis e contexto"
         run: |
@@ -41,5 +41,5 @@ jobs: # Define os jobs do workflow
           echo " Variáveis de ambiente (env) podem ser definidas para todo o workflow ou para jobs específicos. "
           echo " Variáveis env: ${{ env.NODE_VERSION }} "
           echo " O contexto permite acessar informações sobre o ambiente de execução, como variáveis de ambiente, informações do repositório, etc. "
-          echo: ""
+          echo ""
           echo " Total de variáveis e contexto: 2 "
