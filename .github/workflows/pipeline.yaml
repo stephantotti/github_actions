@@ -23,7 +23,7 @@ jobs: # Define os jobs do workflow
         run: | # Comando para mostrar a estrutura do diretório .github/workflows
           echo " Estrutura de diretórios e arquivos .github/workflows "
           ls -la .github/workflows
-          echo: ""
+          echo ""
           echo " Total de workflows: $(ls -1 .github/workflows | wc -l) "
 
       - name: "Elementos obrigatórios do workflow"
