@@ -1,0 +1,35 @@
+name: Issue Trigger Workflow
+# Permissões para permitir comentários automáticos
+permissions:
+  issues: write
+
+# Executa quando issues são criadas, editadas, fechadas ou taggeadas
+on:
+  issues:
+    types: [opened, edited, closed, labeled]
+
+jobs:
+  issue-job:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Informações da Issue
+      run: |
+        echo "Workflow disparado por ISSUE"
+        echo "Ação: ${{ github.event.action }}"
+        echo "Issue #${{ github.event.issue.number }}"
+        echo "Título: ${{ github.event.issue.title }}"
+        echo "Autor: ${{ github.event.issue.user.login }}"
+        echo "Labels: ${{ join(github.event.issue.labels.*.name, ', ') }}"
+    
+    - name: Resposta automática (nova issue)
+      if: github.event.action == 'opened'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: 'Obrigado por reportar esta issue! Nossa equipe irá analisá-la em breve.'
+          })
